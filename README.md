@@ -1,4 +1,4 @@
-# Headless WordPress Docker Setup
+# Headless WooCommerce Docker Setup
 
 This project sets up a headless WordPress site using Docker Compose, with a WordPress backend, MariaDB database, and Next.js frontend.
 
