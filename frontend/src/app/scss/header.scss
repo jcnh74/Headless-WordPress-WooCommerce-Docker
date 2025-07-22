@@ -1,0 +1,16 @@
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  z-index: 999;
+  width: 80vh;
+  height: 80vh;
+  transform: translate(0%, -50%);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.horizontal-scrolling {
+  .logo {
+    left: calc(-80vh - 20px);
+  }
+}

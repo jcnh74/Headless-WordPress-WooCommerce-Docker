@@ -1,0 +1,240 @@
+.scroll-container {
+  display: flex;
+  height: 100dvh;
+  scroll-snap-type: x proximity;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+}
+
+/* Sections that should snap (100dvw width) */
+.section-snap {
+  flex: none;
+  width: 100dvw;
+  height: 100dvh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Sections that should scroll naturally (larger than 100dvw) */
+.section-natural {
+  flex: none;
+  height: 100dvh;
+  scroll-snap-align: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 5dvw;
+}
+
+/* Individual styling for sections */
+.section-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.section-2 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  width: 150dvw;
+}
+
+.section-3 {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.section-4 {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+  width: 200dvw;
+}
+
+.section-5 {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+}
+
+.section-6 {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  color: #333;
+  width: 120dvw;
+}
+
+.section-7 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  color: #333;
+}
+
+.content {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+}
+
+.content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.wide-content {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  overflow-x: visible;
+}
+
+.wide-content .card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  min-width: 300px;
+  text-align: center;
+}
+
+.wide-content .card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.wide-content .card p {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Navigation dots */
+.nav-dots {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+
+/* Visual distinction for natural section dots */
+.dot[style*="border-radius: 2px"] {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dot[style*="border-radius: 2px"].active {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: white;
+}
+
+/* Scroll progress indicator */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #667eea,
+    #764ba2,
+    #f093fb,
+    #f5576c,
+    #4facfe,
+    #00f2fe,
+    #43e97b
+  );
+  z-index: 100;
+  transition: width 0.1s ease;
+}
+
+/* Scroll hint for natural sections */
+.scroll-hint {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.section-natural .scroll-hint {
+  display: block;
+}
+
+.section-snap .scroll-hint {
+  display: none;
+}
+
+.horizontal-scroll-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scroll-behavior: smooth; /* Ensure smooth snapping */
+  flex-direction: row;
+  .section-snap {
+    &:first-child {
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.2);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        transition: background-color 0.7s;
+      }
+    }
+  }
+}
+.horizontal-scrolling {
+  .horizontal-scroll-container {
+    .section-snap {
+      &:first-child {
+        &:before {
+          background-color: rgba(0, 0, 0, 0);
+        }
+      }
+    }
+  }
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
