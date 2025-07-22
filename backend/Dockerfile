@@ -18,6 +18,7 @@ COPY setup.sh /docker-entrypoint-init.d/setup.sh
 RUN chmod +x /docker-entrypoint-init.d/setup.sh
 
 
+
 # Expose port 80
 EXPOSE 80
 
